@@ -12,6 +12,22 @@ contudo, antes desse processo de teste, cuidadoso como sempre foi, Ambrósio sel
 # Explicação da solução
 O maior lucro possivel é obtido atráves da compra no dia 3 (custando 5) e venda no dia 4(custando 30), dando de lucro 25, e comprando no dia 5(custando 25) e vendendo no dia 6(custando 35) obtendo 10 de lucro que somado daria 35.
 
+# como determinar esse valor
+vamos criar uma tabela onde na primeira coluna vão estar a melhor venda de ações até aquele dia e na segunda coluna a melhor venda desse dia para o dia __n__.
+
+com os valores dados no exemplo de entrada a tabela obtida é a seguinte:
+
+| first  | second |
+| :----: | :----: |
+| 0      | 0      |
+| 2      | 0      |
+| 2      | 30     |
+| 25     | 10     |
+| 25     | 10     |
+| 30     | 0      |
+
+tendo a tabela e sabendo que o first é a melhor venda de 0 até a posição da tabela e second é a melhor venda da posição da tabela pro final, basta pegar a maior soma da posição tabela[i].first com a posição tabela[i + 1].second, olharemos para as posições atual e atual + 1 pelo fato dele não poder realizar mais de uma operação no dia, dessa forma, a pergunta que sempre faremos é: a melhor venda até aqui somada a melhor venda do próximo dia até o ultimo é a maior venda possivel?
+
 # Solução
 ```C++
 #include <bits/stdc++.h>
@@ -78,17 +94,4 @@ int main() {
 	return 0;
 }
 ```
-# Breve explicação de como chegar a solução
 
-memo vai ser uma tabela onde na primeira coluna vão estar a melhor venda de ações até aquele dia e na segunda dali pra n, executando o algoritmo a tabela vai ficar assim:
-
-| first  | second |
-| :----: | :----: |
-| 0      | 0      |
-| 2      | 0      |
-| 2      | 30     |
-| 25     | 10     |
-| 25     | 10     |
-| 30     | 0      |
-
-tendo a tabela e sabendo que o first é a melhor venda 0 até a posição da tabela e second é a melhor venda da posição da tabela pro final, basta pegar a maior soma da linha e isso resulta no melhor lucro possivel, pra esse caso de entrada é 35 ganhando 25 fazendo a compra no terceiro dia e vendendo no quarto e, em seguida, comprando no quinto dia e vendendo no sexto.
